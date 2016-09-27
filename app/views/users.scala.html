@@ -1,0 +1,23 @@
+@(title: String, users:Seq[User])
+
+@main("Welcome to Play") {
+
+    <div class="container">
+        <h3 class="center">@title</h3>
+        <div class="row">
+            <ul class="collection col s4 offset-s4">
+                @for(user <- users) {
+                    <li class="collection-item avatar">
+                        <img src="http://lorempixel.com/42/42/people/@user.id" alt="" class="circle">
+                        <span class="title">@user.firstName</span>
+                        <p>@user.lastName<br>
+                            @user.email
+                        </p>
+                        <a href="@routes.UserController.get(user.id getOrElse 0)" class="secondary-content"><i class="material-icons">grade</i></a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+}
