@@ -8,6 +8,7 @@ GET     /                           controllers.HomeController.index
 GET     /action                     controllers.HomeController.action
 GET     /redirect                   controllers.HomeController.redirect
 GET     /template                   controllers.HomeController.template
+GET     /ws                         controllers.HomeController.wsApi
 
 
 #Users
