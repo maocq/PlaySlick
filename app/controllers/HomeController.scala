@@ -18,6 +18,10 @@ class HomeController @Inject()(User: UserRepository)(ws: WSClient)(val messagesA
     Ok(views.html.index("Your new application is ready."))
   }
 
+  def sockets = Action {
+    Ok(views.html.socket())
+  }
+
   def template = Action.async {
     User.list map { users =>
       val title = Messages("home.users")

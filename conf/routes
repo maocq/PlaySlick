@@ -10,6 +10,9 @@ GET     /redirect                   controllers.HomeController.redirect
 GET     /template                   controllers.HomeController.template
 GET     /ws                         controllers.HomeController.wsApi
 
+GET     /sockets                    controllers.HomeController.sockets
+GET     /socket                     controllers.SocketController.socket
+
 
 #Users
 GET     /users                      controllers.UserController.all
