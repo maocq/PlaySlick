@@ -3,6 +3,7 @@ package services
 import javax.inject.{Inject, Singleton}
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props, Terminated}
+import play.api.libs.json.JsValue
 
 
 @Singleton
@@ -19,16 +20,16 @@ object ManagerActors {
 }
 class ManagerActors extends Actor {
 
-  var users = Set[ActorRef]()
+  var users =  Map[ActorRef, String]()
 
   def receive = {
-    case SubscribeActor => {
-      users += sender
+    case a: SubscribeActor =>
+      users += sender -> a.user
       context watch sender
-    }
-    case msg: String =>
-      users map { user =>
-        user ! MessageSocket(msg)
+    case m: MessageManager =>
+      users.foreach {
+        case (socket, user) =>
+          socket ! MessageSocket(m.event, m.message, m.from)
       }
     case Terminated(user) =>
       users -= user
@@ -36,8 +37,8 @@ class ManagerActors extends Actor {
 }
 
 /**
-  * Mensajes
+  * Messages
   */
-object SubscribeActor
-case class MessageSocket(msg: String)
-
+case class SubscribeActor(user: String)
+case class MessageManager(event: Option[String], message: Option[JsValue], from: Option[String], to: Option[String])
+case class MessageSocket(event: Option[String], message: Option[JsValue], from: Option[String])

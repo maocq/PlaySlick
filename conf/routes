@@ -11,7 +11,7 @@ GET     /template                   controllers.HomeController.template
 GET     /ws                         controllers.HomeController.wsApi
 
 GET     /sockets                    controllers.HomeController.sockets
-GET     /socket                     controllers.SocketController.socket
+GET     /socket                     controllers.SocketController.socket(id: Option[String])
 
 
 #Users
