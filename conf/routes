@@ -21,6 +21,18 @@ POST    /users                      controllers.UserController.add
 PUT     /users/:id                  controllers.UserController.edit(id: Long)
 DELETE  /users/:id                  controllers.UserController.remove(id: Long)
 
+#Json
+GET     /json                       controllers.JsonController.index
+GET     /json/class                 controllers.JsonController.classConstruction
+GET     /json/obj                   controllers.JsonController.jsonObj
+GET     /json/writes                controllers.JsonController.writes
+GET     /json/writesCombinator      controllers.JsonController.writesCombinator
+GET     /json/recorrer              controllers.JsonController.traversing
+GET     /json/conversion            controllers.JsonController.converting
+GET     /json/as                    controllers.JsonController.as
+GET     /json/validar               controllers.JsonController.validation
+GET     /json/jsModel               controllers.JsonController.jsValueToModel
+
 
 
 
